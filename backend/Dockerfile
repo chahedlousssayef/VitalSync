@@ -1,3 +1,12 @@
+# =============================================================================
+# Multi-stage build — VitalSync Backend Node.js
+#
+# Pourquoi le multi-stage build ?
+# - Sécurité : les outils de dev (jest, eslint, npm) ne sont PAS présents en
+#   production. Moins d'outils = surface d'attaque réduite.
+# - Taille : l'image finale ne contient que le runtime Node.js + le code app.
+#   On passe typiquement de ~900 Mo (image complète) à ~150 Mo (alpine).
+# =============================================================================
 FROM node:20-alpine AS builder
 WORKDIR /app
 COPY package*.json ./
