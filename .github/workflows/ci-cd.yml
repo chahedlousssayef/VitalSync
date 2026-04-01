@@ -63,7 +63,8 @@ jobs:
         with:
           context: ./backend
           push: true
-          tags: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}/backend:sha-${{ github.sha }}
+          tags: ghcr.io/${{ github.repository_owner }}/vitalsync-backend:sha-${{ github.sha }}
+
           target: production
 
       - name: Build & Push image Frontend
@@ -71,7 +72,7 @@ jobs:
         with:
           context: ./frontend
           push: true
-          tags: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}/frontend:sha-${{ github.sha }}
+          tags: ghcr.io/${{ github.repository_owner }}/vitalsync-frontend:sha-${{ github.sha }}
 
   deploy-staging:
     name: Deploy Staging & Health Check
